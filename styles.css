@@ -76,9 +76,7 @@ header nav {
 }
 
 .pi {
-    width: 930px;
-    margin: 0 auto;
-    background-color: #ffffff;
+
     padding: 50px;
 }
 .picture {
@@ -123,4 +121,45 @@ h1,h2,h3,h4,h5,p{
     position: relative;
     left: 4px;
     margin-bottom: 10px;
+}
+
+.userCard {
+    width: 930px;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+
+.userCard footer {
+    background-color: #f65162;
+    /*height: 85px;*/
+    text-align: center;
+    /*line-height: 85px;*/
+    padding: 30px;
+
+
+}
+
+.userCard svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+
+    vertical-align: top;
+
+}
+
+a{
+    text-decoration: none;
+}
+
+.userCard footer a:hover {
+    background-color: #dd4958;
+}
+
+.userCard footer a{
+    border-radius: 50%;
+    display: inline-block;
+    padding: 5px;
+    margin-right: 50px;
+
 }
