@@ -13,6 +13,23 @@
             overflow: hidden;
         }
     </style>
+    <script>
+        window.onload = function () {
+            let portfolio1 = document.querySelector("#portfolio1");
+            let portfolio2 = document.querySelector("#portfolio2");
+            let portfolio3 = document.querySelector("#portfolio3");
+            let portfolioInnerBar = document.querySelector("#portfolioInnerBar");
+            portfolio1.onclick = function () {
+                portfolioInnerBar.className = "portfolioState1";
+            }
+            portfolio2.onclick = function () {
+                portfolioInnerBar.className = "portfolioState2";
+            }
+            portfolio3.onclick = function () {
+                portfolioInnerBar.className = "portfolioState3";
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -78,30 +95,77 @@
                 </a>
             </footer>
         </div>
-
-        <a href="#" download>下载pdf简历</a>
-        <p>前端开发工程师.技能有html,css,javascript</p>
+        <div class="resumeDownload">
+            <a href="#" download>下载 pdf 简历</a>
+        </div>
+        <p>前端开发工程师.技能有html,css,javascript,vue.js,node.js</p>
     </main>
-    <section>
+    <section class="skill">
         <h2>专业技能</h2>
-        <ol>
-            <li>html5 &amp; css</li>
-            <li>javascript</li>
-            <li>vue</li>
-            <li>react</li>
-            <li>nodejs</li>
-            <li>http</li>
+        <ol class="clearfix">
+            <li>
+                <h3>html5 &amp; css</h3>
+                <div class="processBar">
+                    <div class="process"></div>
+                </div>
+            </li>
+            <li>
+                <h3>javascript</h3>
+                <div class="processBar">
+                    <div class="process"></div>
+                </div>
+            </li>
+            <li>
+                <h3>vue</h3>
+                <div class="processBar">
+                    <div class="process"></div>
+                </div>
+            </li>
+            <li>
+                <h3>react</h3>
+                <div class="processBar">
+                    <div class="process"></div>
+                </div>
+            </li>
+            <li>
+                <h3>nodejs</h3>
+                <div class="processBar">
+                    <div class="process"></div>
+                </div>
+            </li>
+            <li>
+                <h3>http</h3>
+                <div class="processBar">
+                    <div class="process"></div>
+                </div>
+            </li>
         </ol>
     </section>
-    <section>
+    <section class="portfolio">
         <h2>作品集</h2>
         <nav>
-            <ul>
-                <li>所有</li>
-                <li>框架</li>
-                <li>原生html&amp;css</li>
+            <ul class="clearfix">
+                <li id="portfolio1">所有</li>
+                <li id="portfolio2">框架</li>
+                <li id="portfolio3">原生html&amp;css</li>
             </ul>
+            <div id="portfolioBar" class="portfolioBar1">
+                <div id="portfolioInnerBar" class="portfolioState1"></div>
+            </div>
         </nav>
+        <div class="work clearfix">
+            <div class="picture1">
+                <img src="img/1.jpg" alt="1.jpg">
+            </div>
+            <div class="picture2">
+                <img src="img/2.jpg" alt="2.jpg">
+            </div>
+            <div class="picture3">
+                <img src="img/3.jpg" alt="3.jpg">
+            </div>
+
+        </div>
+
     </section>
 </body>
 </html>
