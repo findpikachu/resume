@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>resume</title>
+    <link rel="stylesheet" href="loading.css">
     <link rel="stylesheet" href="styles.css">
     <script src="//at.alicdn.com/t/font_600434_9n1tu3pjot4vx6r.js"></script>
     <style type="text/css">
@@ -15,6 +16,16 @@
     </style>
     <script>
         window.onload = function () {
+            let menuTargets = document.querySelectorAll("[data-menu-target]")
+            menuTargets.forEach((e) => e.classList.add("offset"))
+            setTimeout(() => {
+                let loading = document.querySelector("#loading")
+                let circle = document.querySelector("#circle")
+                let innerCirile = document.querySelector("#innerCircle")
+                circle.classList.remove("circle")
+                innerCirile.classList.remove("innerCircle")
+                loading.classList.remove("loading")
+            },3000)
             let portfolio1 = document.querySelector("#portfolio1");
             let portfolio2 = document.querySelector("#portfolio2");
             let portfolio3 = document.querySelector("#portfolio3");
@@ -28,10 +39,75 @@
             portfolio3.onclick = function () {
                 portfolioInnerBar.className = "portfolioState3";
             }
+            let aTags = document.querySelectorAll("header>nav>ul>li>a")
+            aTags.forEach((element) => {
+                element.onclick = (event) => {
+                    event.preventDefault()
+                    let targetElement = document.querySelector(element.getAttribute("href"))
+                    window.scrollTo({"behavior": "smooth", "top": targetElement.offsetTop - 50});
+                }
+            })
+            window.onscroll = (event) => {
+                let header = document.querySelector("header")
+                if (window.scrollY > 0) {
+                    header.classList.add("topNavBar")
+                } else {
+                    header.classList.remove("topNavBar")
+                }
+                autoHighlightMenu()
+                animation()
+
+            }
+            let works = document.querySelector("#works")
+            let dropDownMenu = document.querySelector("#dropDownMenu")
+            works.onmouseover = () => {
+                dropDownMenu.classList.add("dropDownMenu")
+                dropDownMenu.style.display = "block"
+            }
+            works.onmouseout = () => {
+                dropDownMenu.classList.remove("dropDownMenu")
+                dropDownMenu.style.display = "none"
+            }
+
+
+
+        }
+        function findNearest() {
+            let menuTargets = document.querySelectorAll("[data-menu-target]")
+            let distances = [...menuTargets].map((target) => Math.abs(target.offsetTop  - window.scrollY))
+            let minIndex = distances.indexOf(Math.min(...distances))
+            let current = menuTargets[minIndex]
+            return current
+        }
+        function autoHighlightMenu() {
+
+            let current = findNearest()
+            let id = current.getAttribute("id")
+            let navItem = document.querySelector(`a[href="#${id}"]`)
+            let ulTag = navItem.parentNode.parentNode
+            let liTags = ulTag.children
+            let aTags = [...liTags].map((li) => li.children[0])
+            aTags.forEach((aTag) => {
+                if (aTag === navItem)
+                    navItem.classList.add("highlight")
+                else
+                    aTag.classList.remove("highlight")
+            })
+
+
+        }
+        function animation() {
+            let current = findNearest()
+            current.classList.remove("offset")
         }
     </script>
 </head>
 <body>
+    <div id="loading" class="loading">
+        <div id="circle" class="circle">
+        </div>
+        <div id="innerCircle" class="innerCircle"></div>
+    </div>
 
     <header class="clearfix">
         <div class="log">
@@ -40,9 +116,17 @@
         </div>
         <nav>
             <ul class="clearfix">
-                <li><a href="#">关于</a></li>
-                <li><a href="#">技能</a></li>
-                <li><a href="#">作品</a></li>
+                <li><a href="#about">关于</a></li>
+
+                <li><a href="#skill">技能</a></li>
+                <li id="works">
+                    <a  href="#portfolio">作品</a>
+                    <ul id="dropDownMenu" style="display: none;">
+                        <li>作品1</li>
+                        <li>作品2</li>
+                        <li>作品3</li>
+                    </ul>
+                </li>
                 <li><a href="#">博客</a></li>
                 <li><a href="#">日历</a></li>
                 <li><a href="#">联系方式</a></li>
@@ -54,7 +138,7 @@
         <div class="mask"></div>
     </div>
     <main>
-        <div class="userCard">
+        <div data-menu-target class="userCard" id="about">
             <div class="pi clearfix">
                 <div class="picture">
                     <img src="img/startuper-hover-1-299x347.jpg" alt="头像">
@@ -100,7 +184,7 @@
         </div>
         <p>前端开发工程师.技能有html,css,javascript,vue.js,node.js</p>
     </main>
-    <section class="skill">
+    <section data-menu-target class="skill" id="skill">
         <h2>专业技能</h2>
         <ol class="clearfix">
             <li>
@@ -141,7 +225,7 @@
             </li>
         </ol>
     </section>
-    <section class="portfolio">
+    <section data-menu-target class="portfolio" id="portfolio">
         <h2>作品集</h2>
         <nav>
             <ul class="clearfix">

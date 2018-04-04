@@ -1,0 +1,40 @@
+@keyframes loadingAnimation {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: scale(100);
+
+    }
+}
+.circle,.innerCircle {
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    animation: loadingAnimation 3s  infinite;
+    background: black;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+.innerCircle {
+    animation-delay: .75s;
+}
+
+
+.loading {
+
+
+    z-index: 1;
+    background: #eeedef;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+
+}
+
