@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>resume</title>
     <link rel="stylesheet" href="loading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/css/swiper.min.css">
     <link rel="stylesheet" href="styles.css">
+
     <script src="//at.alicdn.com/t/font_600434_9n1tu3pjot4vx6r.js"></script>
     <style type="text/css">
         .icon {
@@ -14,93 +16,6 @@
             overflow: hidden;
         }
     </style>
-    <script>
-        window.onload = function () {
-            let menuTargets = document.querySelectorAll("[data-menu-target]")
-            menuTargets.forEach((e) => e.classList.add("offset"))
-            setTimeout(() => {
-                let loading = document.querySelector("#loading")
-                let circle = document.querySelector("#circle")
-                let innerCirile = document.querySelector("#innerCircle")
-                circle.classList.remove("circle")
-                innerCirile.classList.remove("innerCircle")
-                loading.classList.remove("loading")
-            },3000)
-            let portfolio1 = document.querySelector("#portfolio1");
-            let portfolio2 = document.querySelector("#portfolio2");
-            let portfolio3 = document.querySelector("#portfolio3");
-            let portfolioInnerBar = document.querySelector("#portfolioInnerBar");
-            portfolio1.onclick = function () {
-                portfolioInnerBar.className = "portfolioState1";
-            }
-            portfolio2.onclick = function () {
-                portfolioInnerBar.className = "portfolioState2";
-            }
-            portfolio3.onclick = function () {
-                portfolioInnerBar.className = "portfolioState3";
-            }
-            let aTags = document.querySelectorAll("header>nav>ul>li>a")
-            aTags.forEach((element) => {
-                element.onclick = (event) => {
-                    event.preventDefault()
-                    let targetElement = document.querySelector(element.getAttribute("href"))
-                    window.scrollTo({"behavior": "smooth", "top": targetElement.offsetTop - 50});
-                }
-            })
-            window.onscroll = (event) => {
-                let header = document.querySelector("header")
-                if (window.scrollY > 0) {
-                    header.classList.add("topNavBar")
-                } else {
-                    header.classList.remove("topNavBar")
-                }
-                autoHighlightMenu()
-                animation()
-
-            }
-            let works = document.querySelector("#works")
-            let dropDownMenu = document.querySelector("#dropDownMenu")
-            works.onmouseover = () => {
-                dropDownMenu.classList.add("dropDownMenu")
-                dropDownMenu.style.display = "block"
-            }
-            works.onmouseout = () => {
-                dropDownMenu.classList.remove("dropDownMenu")
-                dropDownMenu.style.display = "none"
-            }
-
-
-
-        }
-        function findNearest() {
-            let menuTargets = document.querySelectorAll("[data-menu-target]")
-            let distances = [...menuTargets].map((target) => Math.abs(target.offsetTop  - window.scrollY))
-            let minIndex = distances.indexOf(Math.min(...distances))
-            let current = menuTargets[minIndex]
-            return current
-        }
-        function autoHighlightMenu() {
-
-            let current = findNearest()
-            let id = current.getAttribute("id")
-            let navItem = document.querySelector(`a[href="#${id}"]`)
-            let ulTag = navItem.parentNode.parentNode
-            let liTags = ulTag.children
-            let aTags = [...liTags].map((li) => li.children[0])
-            aTags.forEach((aTag) => {
-                if (aTag === navItem)
-                    navItem.classList.add("highlight")
-                else
-                    aTag.classList.remove("highlight")
-            })
-
-
-        }
-        function animation() {
-            let current = findNearest()
-            current.classList.remove("offset")
-        }
-    </script>
 </head>
 <body>
     <div id="loading" class="loading">
@@ -138,6 +53,7 @@
         <div class="mask"></div>
     </div>
     <main>
+
         <div data-menu-target class="userCard" id="about">
             <div class="pi clearfix">
                 <div class="picture">
@@ -227,29 +143,44 @@
     </section>
     <section data-menu-target class="portfolio" id="portfolio">
         <h2>作品集</h2>
-        <nav>
-            <ul class="clearfix">
-                <li id="portfolio1">所有</li>
-                <li id="portfolio2">框架</li>
-                <li id="portfolio3">原生html&amp;css</li>
-            </ul>
-            <div id="portfolioBar" class="portfolioBar1">
-                <div id="portfolioInnerBar" class="portfolioState1"></div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <img class="swiper-slide" src="img/nav-page.jpg">
+                <img class="swiper-slide" src="img/canvas.jpg">
+                <img class="swiper-slide" src="img/apple-style-slides.jpg">
             </div>
-        </nav>
-        <div class="work clearfix">
-            <div class="picture1">
-                <img src="img/1.jpg" alt="1.jpg">
-            </div>
-            <div class="picture2">
-                <img src="img/2.jpg" alt="2.jpg">
-            </div>
-            <div class="picture3">
-                <img src="img/3.jpg" alt="3.jpg">
-            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
 
+            <!-- 如果需要导航按钮 -->
+
+
+            <!-- 如果需要滚动条 -->
+            <div class="swiper-scrollbar"></div>
         </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
 
     </section>
+    <section class="message">
+        <form  id="leaveMessage">
+            <h2>留言</h2>
+            <ul></ul>
+            <label for="">名字</label>
+            <input type="text" name="name">
+            <label for="">内容</label>
+            <input type="text" name="content">
+            <input type="submit" value="submit">
+        </form>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.6.8/av-min.js"></script>
+    <script src="js/init_swiper.js"></script>
+    <script src="js/auto-slide-up.js"></script>
+    <script src="js/sticky-topbar.js"></script>
+    <script src="js/smoothly-navigation.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/loading.js"></script>
+    <script src="js/message.js"></script>
 </body>
 </html>

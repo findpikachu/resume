@@ -1,3 +1,4 @@
+
 li{
     list-style: none;
 }
@@ -378,4 +379,48 @@ main p:last-child {
 }
 .offset {
     transform: translateY(100px);
+}
+
+.swiper-container {
+    width: 668px; height: 501px;
+    /*height: 501px;*/
+}
+
+.swiper-button-prev {
+    width: 64px;
+    height: 64px;
+    right: 100%;
+    left: auto;
+    background-color: white;
+    border-radius: 50%;
+}
+.swiper-button-next {
+    left: 100%;
+    right: auto;
+    width: 64px;
+    height: 64px;
+
+
+    background-color: white;
+    border-radius: 50%;
+    /*right: auto;*/
+}
+
+.portfolio h2 {
+    margin-bottom: 20px;
+}
+
+.message {
+    width: 940px;
+    margin: 40px auto;
+}
+.message h2,.message #leaveMessage {
+    text-align: center;
+}
+
+
+.message ul li {
+    border-top: 1px solid #cbcbcb;
+    border-bottom: 1px solid #cbcbcb;
+    padding: 20px 0;
 }
