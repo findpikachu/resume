@@ -11,6 +11,8 @@ form.addEventListener("submit",(e) => {
     let content = document.querySelector("[name=content]").value
     document.querySelector("[name=content]").value = ""
     let _name = document.querySelector("[name=name]").value
+    if (content === "" || _name === "")
+        return
     var Message = AV.Object.extend('message');
     var message = new Message();
     message.save({
